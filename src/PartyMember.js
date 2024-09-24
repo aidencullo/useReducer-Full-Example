@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ActionButton from "../ActionButton";
-import NumberInput from "../NumberInput";
+import ActionButton from "./ActionButton";
+import NumberInput from "./NumberInput";
 
 export default function PartyMember({ member, dispatch }) {
   const [step, setStep] = useState(1);

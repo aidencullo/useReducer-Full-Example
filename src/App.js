@@ -1,12 +1,13 @@
 import { useReducer, useState } from "react";
-import TextInput from "../TextInput";
-import ActionButton from "../ActionButton";
-import PartyMember from "../PartyMember";
-import partyReducer from "../partyReducer";
+import { useImmerReducer } from "use-immer";
+import TextInput from "./TextInput";
+import ActionButton from "./ActionButton";
+import PartyMember from "./PartyMember";
+import partyReducer from "./partyReducer";
 
 export default function App() {
   const [name, setName] = useState("");
-  const [party, dispatch] = useReducer(partyReducer, initialState);
+  const [party, dispatch] = useImmerReducer(partyReducer, initialState);
 
   const partyList = party.map((member) => {
     return (
