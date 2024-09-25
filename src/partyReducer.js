@@ -2,7 +2,7 @@ export default function reducer(state, { type, payload: { name, step } }) {
   switch (type) {
     case "add_adventurer": {
       if (name === "") {
-        return;
+        break;
       }
 
       let hasThisName = false;
@@ -18,11 +18,14 @@ Differentiate them somehow!`
 
       if (hasThisName) return;
       state.push({ name: name, health: 100 })
-      return;
+      break;
     }
-    case "remove_adventurer": {
-      state = state.filter((s) => s.name !== name);
-      return;
+  case "remove_adventurer": {
+    const index = state.findIndex(member => member.name === name);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
+      break;
     }
     case "increment_health": {
       state.forEach((s) => {
@@ -31,7 +34,7 @@ Differentiate them somehow!`
           s.health = newHealth > 100 ? 100 : newHealth;
         }
       });
-      return;
+      break;
     }
     case "decrement_health": {
       state.forEach((s) => {
@@ -47,7 +50,7 @@ Differentiate them somehow!`
         alert(`${name} has retired from adventuring...`);
       }
 
-      return;
+      break;
     }
     default: {
       throw Error("Unknown Action: " + type);
